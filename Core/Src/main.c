@@ -99,12 +99,8 @@ int main(void)
 
 
 	 // need to set up SPI coms and read the data
-
-
-
-
-
-
+	  void app_main(void);
+	  app main();
 
 
     /* USER CODE BEGIN 3 */
