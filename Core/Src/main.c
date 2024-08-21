@@ -97,11 +97,8 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-
-	 // need to set up SPI coms and read the data
 	  void app_main(void);
-	  app main();
-
+	  app_main();
 
     /* USER CODE BEGIN 3 */
   }

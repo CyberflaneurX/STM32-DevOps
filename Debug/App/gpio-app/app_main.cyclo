@@ -1,0 +1,9 @@
+C:/Users/adamr/STM32Cube/Repository/STM32Cube_FW_F0_V1.11.4/Drivers/CMSIS/Include/core_cm0.h:856:34:__NVIC_SystemReset	1
+../App/gpio-app/app_main.c:147:6:app_main	2
+../App/gpio-app/app_main.c:176:6:__io_putchar	2
+../App/gpio-app/app_main.c:193:6:process_cmd	19
+../App/gpio-app/app_main.c:297:13:get_cmd_line	16
+../App/gpio-app/app_main.c:364:12:parse_cmd_line	8
+../App/gpio-app/app_main.c:405:26:get_port_info	4
+../App/gpio-app/app_main.c:428:20:config_gpio	8
+../App/gpio-app/app_main.c:475:20:enable_gpio_clock	8

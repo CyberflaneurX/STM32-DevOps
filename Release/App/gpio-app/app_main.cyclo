@@ -1,0 +1,2 @@
+../App/gpio-app/app_main.c:147:6:app_main	52
+../App/gpio-app/app_main.c:176:6:__io_putchar	2

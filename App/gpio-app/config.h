@@ -36,29 +36,14 @@
 // (makefile).
 ////////////////////////////////////////////////////////////////////////////////
 
-#if defined STM32F103xB // STM32F103C8T6 (used by Bluepill)
+#include "stm32f0xx_hal.h"  // For STM32F0 series
+#include "stm32f0xx_hal_gpio.h"  // Specifically for GPIO
 
-    #define CONFIG_STM32_HAL_HDR "stm32f1xx_hal.h"
-    #define CONFIG_CONSOLE_UART huart2
-    #define CONFIG_GPIO_TYPE 1
 
-#elif defined STM32F401xE
 
-    #define CONFIG_STM32_HAL_HDR "stm32f4xx_hal.h"
-    #define CONFIG_CONSOLE_UART huart2
+ #define CONFIG_STM32_HAL_HDR "stm32f0xx_hal.h"
+ #define CONFIG_CONSOLE_UART huart1
 
-#elif defined STM32L452xx
 
-    #define CONFIG_STM32_HAL_HDR "stm32l4xx_hal.h"
-    #define CONFIG_CONSOLE_UART huart2
-
-#elif defined STM32U575xx
-
-    #define CONFIG_STM32_HAL_HDR "stm32u5xx_hal.h"
-    #define CONFIG_CONSOLE_UART huart1
-
-#else
-    #error Unknown processor
-#endif
 
 #endif // _CONFIG_H_
