@@ -53,6 +53,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 Stm32Dev.list \
 
+OBJCOPY_BIN += \
+Stm32Dev.bin \
+
 
 # All Target
 all: main-build
@@ -61,8 +64,8 @@ all: main-build
 main-build: Stm32Dev.elf secondary-outputs
 
 # Tool invocations
-Stm32Dev.elf Stm32Dev.map: $(OBJS) $(USER_OBJS) C:\Users\adamr\STM32CubeIDE\workspace_1.14.0\Stm32Test\STM32F031K6TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Stm32Dev.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\adamr\STM32CubeIDE\workspace_1.14.0\Stm32Test\STM32F031K6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32Dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Stm32Dev.elf Stm32Dev.map: $(OBJS) $(USER_OBJS) ../STM32F031K6TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Stm32Dev.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"../STM32F031K6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32Dev.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -76,12 +79,17 @@ Stm32Dev.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+Stm32Dev.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "Stm32Dev.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) Stm32Dev.elf Stm32Dev.list Stm32Dev.map default.size.stdout
+	-$(RM) Stm32Dev.bin Stm32Dev.elf Stm32Dev.list Stm32Dev.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
